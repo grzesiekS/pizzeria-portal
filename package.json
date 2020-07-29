@@ -29,6 +29,7 @@
     "start:react": "react-scripts start",
     "start-and-test": "run-p start-silent test ",
     "build": "react-scripts build",
+    "lint": "esw --watch --clear",
     "test": "react-scripts test --noStackTrace",
     "test-all": "react-scripts test --watchAll=false --noStackTrace",
     "test-related": "react-scripts test --watchAll=false --noStackTrace --findRelatedTests",
@@ -58,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-watch": "^7.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "redux-devtools-extension": "^2.13.8"
