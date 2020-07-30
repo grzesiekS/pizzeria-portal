@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './Booking.module.scss';
+import styles from './Order.module.scss';
 
-class Booking extends React.Component {
+class Order extends React.Component {
   render() {
     console.log(this);
     return (
       <div className={styles.component}>
-        <h2>Booking view</h2>
+        <h2>Order view</h2>
         <p>{this.props.match.params.id}</p>
       </div>
     );
   }
 }
 
-Booking.propTypes = {
+Order.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
@@ -23,4 +23,4 @@ Booking.propTypes = {
   }),
 };
 
-export default Booking;
+export default Order;
