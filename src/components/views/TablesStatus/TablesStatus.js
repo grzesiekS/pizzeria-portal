@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './TablesStatus.module.scss';
 import { Link } from 'react-router-dom';
 
-const TablesStatus = ({id='ID_booking'}) => (
+const TablesStatus = ({id='ID_test'}) => (
   <div className={styles.component}>
     <h2>TablesStatus view</h2>
     <div>
