@@ -27,7 +27,7 @@ function App() {
           {/* SUB VIEWS */}
           <Route exact path={`${process.env.PUBLIC_URL}/tables/booking/:id`} component={Booking} />
           <Route exact path={`${process.env.PUBLIC_URL}/tables/events/:id`} component={Event} />
-          <Route exact path={`${process.env.PUBLIC_URL}/tables/order/:id`} component={Order} />
+          <Route exact path={`${process.env.PUBLIC_URL}/waiter/order/:id`} component={Order} />
         </Switch>
       </MainLayout>
     </BrowserRouter>
