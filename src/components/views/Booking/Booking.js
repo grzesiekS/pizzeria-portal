@@ -5,7 +5,6 @@ import styles from './Booking.module.scss';
 
 class Booking extends React.Component {
   render() {
-    console.log(this);
     return (
       <div className={styles.component}>
         <h2>Booking view</h2>

@@ -5,7 +5,6 @@ import styles from './Event.module.scss';
 
 class Event extends React.Component {
   render() {
-    console.log(this);
     return (
       <div className={styles.component}>
         <h2>Event view</h2>

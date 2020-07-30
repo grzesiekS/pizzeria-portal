@@ -5,7 +5,6 @@ import styles from './Order.module.scss';
 
 class Order extends React.Component {
   render() {
-    console.log(this);
     return (
       <div className={styles.component}>
         <h2>Order view</h2>
