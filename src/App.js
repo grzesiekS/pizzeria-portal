@@ -8,6 +8,8 @@ import Waiter from './components/views/Waiter/Waiter';
 import Kitchen from './components/views/Kitchen/Kitchen';
 
 import Booking from './components/views/Booking/Booking';
+import Order from './components/views/Order/Order';
+import Event from './components/views/Event/Event';
 
 import MainLayout from './components/layout/MainLayout/MainLayout';
 
@@ -24,6 +26,8 @@ function App() {
 
           {/* SUB VIEWS */}
           <Route exact path={`${process.env.PUBLIC_URL}/tables/booking/:id`} component={Booking} />
+          <Route exact path={`${process.env.PUBLIC_URL}/tables/events/:id`} component={Event} />
+          <Route exact path={`${process.env.PUBLIC_URL}/tables/order/:id`} component={Order} />
         </Switch>
       </MainLayout>
     </BrowserRouter>
