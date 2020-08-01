@@ -13,4 +13,9 @@ describe('Component Login', () => {
     expect(component.find('#login').length).toEqual(1);
     expect(component.find('#password').length).toEqual(1);
   });
+
+  it('should render button with link to Dashboard', () => {
+    const component = shallow(<Login />);
+    expect(component.find('.link').length).toEqual(1);
+  });
 });
