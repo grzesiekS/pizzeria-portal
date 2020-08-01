@@ -3,7 +3,11 @@
 .component {
   padding: $base-size;
   position: relative;
-  color: white;
+}
+
+.title {
+  text-transform: uppercase;
+  color: $color-main;
 }
 
 .innerSection {
@@ -13,15 +17,16 @@
   transform: translateX(-50%);
   width: 450px;
   text-align: center;
-  background-color: $color-main;
+  border: 3px solid $color-main;
   border-radius: 10px;
+  box-shadow: 10px 10px 19px -2px rgba(0,0,0,0.75);
 }
 
 form {
-  input {
+  div {
     display: block;
     margin: 35px auto;
     width: 250px;
-    height: 35px;
+    height: 100px;
   }
 }
