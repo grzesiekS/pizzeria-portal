@@ -31,13 +31,13 @@ const Dashboard = () => (
     <Grid container spacing={4}>
       <Grid item lg={6} md={12}>
         <div className={styles.innerSection}>
-          <h2>Daily order statistic</h2>
+          <h2 className={styles.title}>Order statistic</h2>
           <HorizontalBar data={data} />
         </div>
       </Grid>
       <Grid item lg={6} md={12}>
         <div className={styles.innerSection}>
-          <h2>Reservations and events list</h2>
+          <h2 className={styles.title}>Reservations and events list</h2>
           <TableContainer component={Paper} className='table'>
             <Table>
               <TableHead>
