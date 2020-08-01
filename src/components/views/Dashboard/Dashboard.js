@@ -16,11 +16,11 @@ const data = {
   datasets: [
     {
       label: `DAILY ORDER STATISTIC`,
-      backgroundColor: 'rgba(63,191,63,0.2)',
-      borderColor: 'rgba(63,191,63,1)',
+      backgroundColor: 'rgba(43,76,111,0.2)',
+      borderColor: 'rgba(43,76,111,1)',
       borderWidth: 1,
-      hoverBackgroundColor: 'rgba(63,191,63,0.4)',
-      hoverBorderColor: 'rgba(63,191,63,1)',
+      hoverBackgroundColor: 'rgba(43,76,111,0.4)',
+      hoverBorderColor: 'rgba(43,76,111,1)',
       data: [21, 12, 38, 29],
     },
   ],
