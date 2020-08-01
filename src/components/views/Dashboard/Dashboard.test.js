@@ -12,4 +12,9 @@ describe('Component Dashboard', () => {
     const component = shallow(<Dashboard />);
     expect(component.find('HorizontalBar').length).toEqual(1);
   });
+
+  it('should render table with reservation and events list', () => {
+    const component = shallow(<Dashboard />);
+    expect(component.find('.table').length).toEqual(1);
+  });
 });
