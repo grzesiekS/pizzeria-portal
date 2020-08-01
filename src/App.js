@@ -34,8 +34,8 @@ function App() {
         <ThemeProvider theme={theme}>
           <MainLayout>
             <Switch>
-              <Route exact path={`${process.env.PUBLIC_URL}/`} component={Dashboard} />
-              <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
+              <Route exact path={`${process.env.PUBLIC_URL}/`} component={Login} />
+              <Route exact path={`${process.env.PUBLIC_URL}/dashboard`} component={Dashboard} />
               <Route exact path={`${process.env.PUBLIC_URL}/tables`} component={TablesStatus} />
               <Route exact path={`${process.env.PUBLIC_URL}/waiter`} component={Waiter} />
               <Route exact path={`${process.env.PUBLIC_URL}/kitchen`} component={Kitchen} />
