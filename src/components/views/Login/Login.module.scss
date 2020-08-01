@@ -2,4 +2,26 @@
 
 .component {
   padding: $base-size;
+  position: relative;
+  color: white;
+}
+
+.innerSection {
+  position: absolute;
+  left: 50%;
+  top: 400%;
+  transform: translateX(-50%);
+  width: 450px;
+  text-align: center;
+  background-color: $color-main;
+  border-radius: 10px;
+}
+
+form {
+  input {
+    display: block;
+    margin: 35px auto;
+    width: 250px;
+    height: 35px;
+  }
 }
