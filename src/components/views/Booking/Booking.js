@@ -23,6 +23,7 @@ class Booking extends React.Component {
         defaultDate: '',
         defaultHour: '12:00',
         defaultDuration: 0,
+        defaultPpl: 0,
       }
       :
       this.state = {
@@ -34,6 +35,7 @@ class Booking extends React.Component {
         defaultDate: '2020-08-02',
         defaultHour: '15:30',
         defaultDuration: 3,
+        defaultPpl: 3,
       };
   }
 
@@ -76,6 +78,16 @@ class Booking extends React.Component {
             label="Duration"
             type="number"
             defaultValue={this.state.defaultDuration}
+            className={styles.inputs}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="standard-number"
+            label="People"
+            type="number"
+            defaultValue={this.state.defaultPpl}
             className={styles.inputs}
             InputLabelProps={{
               shrink: true,
