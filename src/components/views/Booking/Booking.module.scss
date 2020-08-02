@@ -3,3 +3,13 @@
 .component {
   padding: $base-size;
 }
+
+.inputs {
+  margin-right: 100%;
+}
+
+.title {
+  text-transform: uppercase;
+  color: $color-main;
+  margin-bottom: $titleMarginBottom;
+}
