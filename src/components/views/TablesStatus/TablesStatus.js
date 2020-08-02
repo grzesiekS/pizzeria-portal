@@ -25,14 +25,14 @@ const events = [
     id: 1,
     date: '2020-08-02',
     hour: '12:30',
-    table: [1],
+    table: [1,2],
     repeat: 'daily',
     duration: 4,
   },
   {
     id: 2,
     date: '2020-08-02',
-    hour: '13:30',
+    hour: '17:30',
     table: [2],
     repeat: 'daily',
     duration: 4,
@@ -40,7 +40,7 @@ const events = [
   {
     id: 3,
     date: '2020-08-02',
-    hour: '15:30',
+    hour: '17:30',
     table: [3],
     repeat: 'daily',
     duration: 4,
@@ -99,11 +99,39 @@ const TablesStatus = () => {
               {hours.map(hr => (
                 <TableRow key={hr}>
                   <TableCell align='center'>{valuetextTime(hr)}</TableCell>
-                  {events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr).map(filterEvent => (
-                    <TableCell align='center' key={filterEvent.id}>
-                      <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
-                    </TableCell>
-                  ))}
+                  {events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                    .filter(filterEvent => filterEvent.table.indexOf(1) !== -1).length > 0
+                    ?
+                    events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                      .filter(filterEvent => filterEvent.table.indexOf(1) !== -1).map(filterEvent => (
+                        <TableCell align='center' key={filterEvent.id}>
+                          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
+                        </TableCell>
+                      ))
+                    :
+                    <TableCell align='center'>---</TableCell>}
+                  {events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                    .filter(filterEvent => filterEvent.table.indexOf(2) !== -1).length > 0
+                    ?
+                    events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                      .filter(filterEvent => filterEvent.table.indexOf(2) !== -1).map(filterEvent => (
+                        <TableCell align='center' key={filterEvent.id}>
+                          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
+                        </TableCell>
+                      ))
+                    :
+                    <TableCell align='center'>---</TableCell>}
+                  {events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                    .filter(filterEvent => filterEvent.table.indexOf(3) !== -1).length > 0
+                    ?
+                    events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                      .filter(filterEvent => filterEvent.table.indexOf(3) !== -1).map(filterEvent => (
+                        <TableCell align='center' key={filterEvent.id}>
+                          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
+                        </TableCell>
+                      ))
+                    :
+                    <TableCell align='center'>---</TableCell>}
                 </TableRow>
               ))}
             </TableBody>
