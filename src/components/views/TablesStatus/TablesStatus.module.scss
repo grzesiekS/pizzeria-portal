@@ -7,3 +7,9 @@
 .innerSection {
   margin: $innerSection-margin;
 }
+
+.title {
+  text-transform: uppercase;
+  color: $color-main;
+  margin-bottom: $titleMarginBottom;
+}

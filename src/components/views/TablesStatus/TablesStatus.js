@@ -4,16 +4,26 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import styles from './TablesStatus.module.scss';
 import { Link } from 'react-router-dom';
 
 const valuetextTime = value => value.toString().length > 2 ? value.toString().replace('.5', ':30') : `${value.toString()}:00`;
+const hours = [12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24];
 
 const TablesStatus = ({id='ID_test'}) => {
   return (
     <div className={styles.component}>
       <div className={styles.innerSection}>
+        <h2 className={styles.title}>Date and time picker</h2>
         <Grid container justify='space-around'>
           <TextField
             id="date"
@@ -28,7 +38,7 @@ const TablesStatus = ({id='ID_test'}) => {
               Time Picker
             </Typography>
             <Slider
-              defaultValue={12}
+              defaultValue={[12,12]}
               getAriaValueText={valuetextTime}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
@@ -41,13 +51,37 @@ const TablesStatus = ({id='ID_test'}) => {
           </Grid>
         </Grid>
       </div>
-      <div>
-        <h2>Booking</h2>
-        <Link to={`${process.env.PUBLIC_URL}/tables/booking/new`}>NEW</Link>
-        <Link to={`${process.env.PUBLIC_URL}/tables/booking/${id}`}>ID</Link>
-        <h2>Events</h2>
-        <Link to={`${process.env.PUBLIC_URL}/tables/events/new`}>NEW</Link>
-        <Link to={`${process.env.PUBLIC_URL}/tables/events/${id}`}>ID</Link>
+      <div className={styles.innerSection}>
+        <h2 className={styles.title}>Reservations and events list</h2>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell align='center'>Time</TableCell>
+                <TableCell align='center'>Table 1</TableCell>
+                <TableCell align='center'>Table 2</TableCell>
+                <TableCell align='center'>Table 3</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {hours.map(hr => (
+                <TableRow key={hr}>
+                  <TableCell align='center'>{valuetextTime(hr)}</TableCell>
+                  <TableCell align='center'>
+                    <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${id}`} color="primary">Event</Button>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/booking/${id}`} color="secondary">Booking</Button>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/new`} color="primary">New Event</Button>
+                    <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/booking/new`} color="secondary">New Booking</Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </div>
   );
