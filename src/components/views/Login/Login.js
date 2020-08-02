@@ -19,7 +19,7 @@ const Login = () => (
         />
       </form>
       <Button className={styles.link} variant="contained" color="primary" component={NavLink} to={`${process.env.PUBLIC_URL}/dashboard`}>
-        Dashboard
+        Log In
       </Button>
     </div>
   </div>
