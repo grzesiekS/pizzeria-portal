@@ -6,6 +6,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
+import Button from '@material-ui/core/Button';
 
 import styles from './Booking.module.scss';
 
@@ -145,6 +146,9 @@ class Booking extends React.Component {
               />
             </FormGroup>
           </FormControl>
+          <Button variant="contained" color="primary" className={styles.inputs}>
+            Add / Change
+          </Button>
         </form>
       </div>
     );
