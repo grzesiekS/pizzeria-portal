@@ -103,7 +103,7 @@ class Booking extends React.Component {
                 />
               </FormGroup>
             </FormControl>
-            <FormControl component='fieldset'>
+            <FormControl component='fieldset' className={styles.inputs}>
               <FormLabel component="legend">Starters</FormLabel>
               <FormGroup>
                 <FormControlLabel
