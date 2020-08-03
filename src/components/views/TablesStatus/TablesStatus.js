@@ -16,23 +16,9 @@ import Button from '@material-ui/core/Button';
 import styles from './TablesStatus.module.scss';
 import { Link } from 'react-router-dom';
 
-const valuetextTime = value => value.toString().length > 2 ? value.toString().replace('.5', ':30') : `${value.toString()}:00`;
-const valuenumberTime = value => parseFloat(value.replace(':00', '').replace(':30','.5'));
-const mergeArrays = (array1, array2) => {
-  const mergedArray = [];
-  mergedArray.push(
-    ...array1.map(data => (
-      {...data, type:'event'}
-    ))
-  );
-
-  mergedArray.push(
-    ...array2.map(data => (
-      {...data, type:'booking'}
-    ))
-  );
-  return mergedArray;
-};
+import {valuetextTime} from '../../utils/valuetextTime';
+import {valuenumberTime} from '../../utils/valuenumberTime';
+import {mergeEventsOrders} from '../../utils/mergeEventsOrders';
 
 const hours = [12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24];
 const events = [
@@ -135,10 +121,10 @@ const TablesStatus = () => {
               {hours.map(hr => (
                 <TableRow key={hr}>
                   <TableCell align='center'>{valuetextTime(hr)}</TableCell>
-                  {mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                  {mergeEventsOrders(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                     .filter(filterEvent => filterEvent.table.indexOf(1) !== -1).length > 0
                     ?
-                    mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                    mergeEventsOrders(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                       .filter(filterEvent => filterEvent.table.indexOf(1) !== -1).map(filterEvent => (
                         <TableCell align='center' key={filterEvent.id}>
                           {filterEvent.type  === 'event'
@@ -151,10 +137,10 @@ const TablesStatus = () => {
                       ))
                     :
                     <TableCell align='center'>---</TableCell>}
-                  {mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                  {mergeEventsOrders(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                     .filter(filterEvent => filterEvent.table.indexOf(2) !== -1).length > 0
                     ?
-                    mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                    mergeEventsOrders(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                       .filter(filterEvent => filterEvent.table.indexOf(2) !== -1).map(filterEvent => (
                         <TableCell align='center' key={filterEvent.id}>
                           {filterEvent.type  === 'event'
@@ -167,10 +153,10 @@ const TablesStatus = () => {
                       ))
                     :
                     <TableCell align='center'>---</TableCell>}
-                  {mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                  {mergeEventsOrders(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                     .filter(filterEvent => filterEvent.table.indexOf(3) !== -1).length > 0
                     ?
-                    mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                    mergeEventsOrders(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                       .filter(filterEvent => filterEvent.table.indexOf(3) !== -1).map(filterEvent => (
                         <TableCell align='center' key={filterEvent.id}>
                           {filterEvent.type  === 'event'
