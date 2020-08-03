@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
+import shortid from 'shortid';
 
 import styles from './Booking.module.scss';
 
@@ -40,6 +41,7 @@ class Booking extends React.Component {
       if(filteredData.length === 0) {
         filteredData.push(
           {
+            id: shortid.generate(),
             date: '',
             hour: '',
             table: [],
