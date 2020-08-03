@@ -29,6 +29,8 @@ const events = [
     table: [1,2],
     repeat: 'daily',
     duration: 4,
+    ppl: 3,
+    starters: [],
   },
   {
     id: 2,
@@ -37,6 +39,8 @@ const events = [
     table: [2],
     repeat: 'daily',
     duration: 4,
+    ppl: 3,
+    starters: ['bread', 'water'],
   },
   {
     id: 3,
@@ -45,6 +49,8 @@ const events = [
     table: [3],
     repeat: 'daily',
     duration: 4,
+    ppl: 3,
+    starters: ['bread'],
   },
 ];
 
