@@ -1,13 +1,13 @@
-export const mergeEventsOrders = (array1, array2) => {
+export const mergeEventsOrders = (events, booking) => {
   const mergedArray = [];
   mergedArray.push(
-    ...array1.map(data => (
+    ...events.map(data => (
       {...data, type:'event'}
     ))
   );
 
   mergedArray.push(
-    ...array2.map(data => (
+    ...booking.map(data => (
       {...data, type:'booking'}
     ))
   );
