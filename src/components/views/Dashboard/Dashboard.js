@@ -8,8 +8,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import shortid from 'shortid';
 
 import styles from './Dashboard.module.scss';
+import { mergeEventsOrders } from '../../utils/mergeEventsOrders';
+import {valuetextTime} from '../../utils/valuetextTime';
+import {valuenumberTime} from '../../utils/valuenumberTime';
 
 const dbDataOrders = [
   {
@@ -121,6 +125,54 @@ const dbDataOrders = [
   },
 ];
 
+const events = [
+  {
+    id: 1,
+    date: '2020-08-02',
+    hour: '12:30',
+    table: [1,2],
+    repeat: 'daily',
+    duration: 4,
+  },
+  {
+    id: 2,
+    date: '2020-08-02',
+    hour: '17:30',
+    table: [2],
+    repeat: 'daily',
+    duration: 4,
+  },
+  {
+    id: 3,
+    date: '2020-08-02',
+    hour: '17:30',
+    table: [3],
+    repeat: 'daily',
+    duration: 4,
+  },
+];
+
+const booking = [
+  {
+    id: 1,
+    date: '2020-08-03',
+    hour: '12:00',
+    table: [3],
+    duration: 3,
+    ppl: 4,
+    starters: ['water'],
+  },
+  {
+    id: 2,
+    date: '2020-08-03',
+    hour: '17:00',
+    table: [1],
+    duration: 3,
+    ppl: 4,
+    starters: ['water'],
+  },
+];
+
 const countOrders = dataOrders => {
   const ordersCount = {};
   dataOrders.forEach(element => {
@@ -173,16 +225,13 @@ const Dashboard = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow>
-                    <TableCell align='center'>12:00</TableCell>
-                    <TableCell align='center'>14:00</TableCell>
-                    <TableCell align='center'>1,2</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell align='center'>13:00</TableCell>
-                    <TableCell align='center'>14:30</TableCell>
-                    <TableCell align='center'>3</TableCell>
-                  </TableRow>
+                  {mergeEventsOrders(events, booking).map(mergeData => (
+                    <TableRow key={shortid.generate()}>
+                      <TableCell align='center'>{mergeData.hour}</TableCell>
+                      <TableCell align='center'>{valuetextTime(valuenumberTime(mergeData.hour) + mergeData.duration)}</TableCell>
+                      <TableCell align='center'>{mergeData.table.join(',')}</TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </TableContainer>
