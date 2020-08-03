@@ -3,3 +3,24 @@
 .component {
   padding: $base-size;
 }
+
+.title {
+  text-transform: uppercase;
+  color: $color-main;
+}
+
+.innerSection {
+  max-width: 550px;
+  margin: 15px auto;
+  padding: 20px;
+}
+
+.select {
+  width: 190px;
+}
+
+.orderSection {
+  margin-top: 20px;
+}
+
+
