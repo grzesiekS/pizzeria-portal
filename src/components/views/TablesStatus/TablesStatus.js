@@ -18,6 +18,21 @@ import { Link } from 'react-router-dom';
 
 const valuetextTime = value => value.toString().length > 2 ? value.toString().replace('.5', ':30') : `${value.toString()}:00`;
 const valuenumberTime = value => parseFloat(value.replace(':00', '').replace(':30','.5'));
+const mergeArrays = (array1, array2) => {
+  const mergedArray = [];
+  mergedArray.push(
+    ...array1.map(data => (
+      {...data, type:'event'}
+    ))
+  );
+
+  mergedArray.push(
+    ...array2.map(data => (
+      {...data, type:'booking'}
+    ))
+  );
+  return mergedArray;
+};
 
 const hours = [12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24];
 const events = [
@@ -44,6 +59,27 @@ const events = [
     table: [3],
     repeat: 'daily',
     duration: 4,
+  },
+];
+
+const booking = [
+  {
+    id: 1,
+    date: '2020-08-03',
+    hour: '12:00',
+    table: [3],
+    duration: 3,
+    ppl: 4,
+    starters: ['water'],
+  },
+  {
+    id: 2,
+    date: '2020-08-03',
+    hour: '17:00',
+    table: [1],
+    duration: 3,
+    ppl: 4,
+    starters: ['water'],
   },
 ];
 
@@ -99,35 +135,50 @@ const TablesStatus = () => {
               {hours.map(hr => (
                 <TableRow key={hr}>
                   <TableCell align='center'>{valuetextTime(hr)}</TableCell>
-                  {events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                  {mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                     .filter(filterEvent => filterEvent.table.indexOf(1) !== -1).length > 0
                     ?
-                    events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                    mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                       .filter(filterEvent => filterEvent.table.indexOf(1) !== -1).map(filterEvent => (
                         <TableCell align='center' key={filterEvent.id}>
-                          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
+                          {filterEvent.type  === 'event'
+                            ?
+                            <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
+                            :
+                            <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/booking/${filterEvent.id}`} color="secondary">{`Booking ${filterEvent.id}`}</Button>
+                          }
                         </TableCell>
                       ))
                     :
                     <TableCell align='center'>---</TableCell>}
-                  {events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                  {mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                     .filter(filterEvent => filterEvent.table.indexOf(2) !== -1).length > 0
                     ?
-                    events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                    mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                       .filter(filterEvent => filterEvent.table.indexOf(2) !== -1).map(filterEvent => (
                         <TableCell align='center' key={filterEvent.id}>
-                          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
+                          {filterEvent.type  === 'event'
+                            ?
+                            <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
+                            :
+                            <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/booking/${filterEvent.id}`} color="secondary">{`Booking ${filterEvent.id}`}</Button>
+                          }
                         </TableCell>
                       ))
                     :
                     <TableCell align='center'>---</TableCell>}
-                  {events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                  {mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                     .filter(filterEvent => filterEvent.table.indexOf(3) !== -1).length > 0
                     ?
-                    events.filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
+                    mergeArrays(events, booking).filter(event => valuenumberTime(event.hour) - 0.1 < hr && valuenumberTime(event.hour) + 0.1 + event.duration > hr)
                       .filter(filterEvent => filterEvent.table.indexOf(3) !== -1).map(filterEvent => (
                         <TableCell align='center' key={filterEvent.id}>
-                          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
+                          {filterEvent.type  === 'event'
+                            ?
+                            <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/${filterEvent.id}`} color="primary">{`Event ${filterEvent.id}`}</Button>
+                            :
+                            <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/booking/${filterEvent.id}`} color="secondary">{`Booking ${filterEvent.id}`}</Button>
+                          }
                         </TableCell>
                       ))
                     :
