@@ -166,6 +166,13 @@ const dbDataOrdersDemo = {
       priceSingle: 9,
       params: {},
     },
+    {
+      id: 'cake',
+      amount: 5,
+      price: 45,
+      priceSingle: 9,
+      params: {},
+    },
   ],
   id: 123,
 };
@@ -278,26 +285,28 @@ class Order extends React.Component {
               />
               <h2 className={styles.subtitle}>Order details:</h2>
               {dbDataOrdersDemo.products.map(product => (
-                <div key={product.id} className={styles.orderDetails}>
-                  <p>{`${findProduct(product.id, demoProducts)[0].name} x ${product.amount} Price: ${product.price}$`}</p>
-                  {product.params !== undefined
-                    ?
-                    Object.keys(product.params).map(param => (
-                      <ul key={param}>
-                        <li>
-                          {`${findProduct(product.id, demoProducts)[0].params[param].label}:`}
-                          <ul>
-                            {Object.keys(product.params[param]).map(paramInner => (
-                              <li key={paramInner}>{findProduct(product.id, demoProducts)[0].params[param].options[paramInner].label}</li>
-                            ))}
-                          </ul>
-                        </li>
-                      </ul>
-                    ))
-                    :
-                    null
-                  }
-                </div>
+                findProduct(product.id, demoProducts).map(productFilter => (
+                  <div key={product.id} className={styles.orderDetails}>
+                    <p>{`${productFilter.name} x ${product.amount} Price: ${product.price}$`}</p>
+                    {product.params !== undefined
+                      ?
+                      Object.keys(product.params).map(param => (
+                        <ul key={param}>
+                          <li>
+                            {`${productFilter.params[param].label}:`}
+                            <ul>
+                              {Object.keys(product.params[param]).map(paramInner => (
+                                <li key={paramInner}>{productFilter.params[param].options[paramInner].label}</li>
+                              ))}
+                            </ul>
+                          </li>
+                        </ul>
+                      ))
+                      :
+                      null
+                    }
+                  </div>
+                ))
               ))}
               <h2 className={styles.subtitle}>Total Price:</h2>
               <h2 className={styles.title}>{`${dbDataOrdersDemo.totalPrice} $`}</h2>
