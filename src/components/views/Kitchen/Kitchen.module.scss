@@ -3,3 +3,12 @@
 .component {
   padding: $base-size;
 }
+
+.title {
+  text-transform: uppercase;
+  color: $color-main;
+}
+
+.options {
+  font-size: 12px;
+}
