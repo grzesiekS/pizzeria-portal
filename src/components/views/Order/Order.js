@@ -129,6 +129,49 @@ const demoProducts = [
   },
 ];
 
+const dbDataOrdersDemo = {
+  address: '',
+  phone: '',
+  tableNo: '1',
+  totalPrice: 40,
+  totalNumber: 1,
+  subtotalPrice: 20,
+  deliveryFee: 20,
+  products: [
+    {
+      id: 'pizza',
+      amount: 1,
+      price: 20,
+      priceSingle: 20,
+      params: {
+        sauce: {
+          tomato: 'tomato',
+        },
+        toppings: {
+          olives: 'olives',
+          redPeppers: 'redPeppers',
+          greenPeppers: 'greenPeppers',
+          mushrooms: 'mushrooms',
+          basil: 'basil',
+        },
+        crust: {
+          standard: 'standard',
+        },
+      },
+    },
+    {
+      id: 'cake',
+      amount: 9,
+      price: 27,
+      priceSingle: 9,
+      params: {},
+    },
+  ],
+  id: 123,
+};
+
+const findProduct = (productId, productList) => productList.filter(product => product.id === productId);
+
 const renderActions = param => {
   switch (param.type) {
     case 'select':
@@ -190,37 +233,79 @@ class Order extends React.Component {
       <div className={styles.component}>
         <Grid
           container
+          justify="space-around"
         >
-          {demoProducts.map(product => (
-            <Grid item lg={6} xs={12} key={product.id} component={Paper} className={styles.innerSection}>
-              <h2 className={styles.title}>{product.name}</h2>
-              {product.params !== undefined
-                ?
-                Object.keys(product.params).map(param => (
-                  renderActions(product.params[param])
-                ))
-                : null
-              }
-              <Grid
-                container
-                justify="space-around"
-                alignItems="center"
-                className={styles.orderSection}
-              >
-                <TextField
-                  id="standard-number"
-                  label="Select Quantity"
-                  type="number"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-                <Button variant="contained" color="primary">
-                  Add Order
-                </Button>
+          <div className={styles.container}>
+            {demoProducts.map(product => (
+              <Grid item xs={12} key={product.id} component={Paper} className={styles.innerSection}>
+                <h2 className={styles.title}>{product.name}</h2>
+                {product.params !== undefined
+                  ?
+                  Object.keys(product.params).map(param => (
+                    renderActions(product.params[param])
+                  ))
+                  : null
+                }
+                <Grid
+                  container
+                  justify="space-around"
+                  alignItems="center"
+                  className={styles.orderSection}
+                >
+                  <TextField
+                    id="standard-number"
+                    label="Select Quantity"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                  <Button variant="contained" color="primary">
+                    Add Order
+                  </Button>
+                </Grid>
               </Grid>
+            ))}
+          </div>
+          <div className={styles.container}>
+            <Grid item component={Paper} className={styles.innerSection}>
+              <h2 className={styles.title}>{`Order ${this.props.match.params.id}`}</h2>
+              <TextField
+                id="standard-basic"
+                label="Table No"
+                className={styles.input}
+                value={dbDataOrdersDemo.tableNo}
+              />
+              <h2 className={styles.subtitle}>Order details:</h2>
+              {dbDataOrdersDemo.products.map(product => (
+                <div key={product.id} className={styles.orderDetails}>
+                  <p>{`${findProduct(product.id, demoProducts)[0].name} x ${product.amount} Price: ${product.price}$`}</p>
+                  {product.params !== undefined
+                    ?
+                    Object.keys(product.params).map(param => (
+                      <ul key={param}>
+                        <li>
+                          {`${findProduct(product.id, demoProducts)[0].params[param].label}:`}
+                          <ul>
+                            {Object.keys(product.params[param]).map(paramInner => (
+                              <li key={paramInner}>{findProduct(product.id, demoProducts)[0].params[param].options[paramInner].label}</li>
+                            ))}
+                          </ul>
+                        </li>
+                      </ul>
+                    ))
+                    :
+                    null
+                  }
+                </div>
+              ))}
+              <h2 className={styles.subtitle}>Total Price:</h2>
+              <h2 className={styles.title}>{`${dbDataOrdersDemo.totalPrice} $`}</h2>
+              <Button variant="contained" color="primary">
+                Send Order
+              </Button>
             </Grid>
-          ))}
+          </div>
         </Grid>
       </div>
     );
