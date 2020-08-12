@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { api } from '../settings';
 
 /* selectors */
 export const getAll = ({tables}) => tables.data;
@@ -17,6 +18,22 @@ const FETCH_ERROR = createActionName('FETCH_ERROR');
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+
+/* thunk creators */
+export const fetchFromAPI = () => {
+  return (dispatch, getState) => {
+    dispatch(fetchStarted());
+
+    Axios
+      .get(`${api.url}/${api.tables}`)
+      .then(res => {
+        dispatch(fetchSuccess(res.data));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
