@@ -25,7 +25,7 @@ export const fetchFromAPI = () => {
     dispatch(fetchStarted());
 
     Axios
-      .get(`${api.url}/${api.tables}`)
+      .get(`${api.url}/api/${api.tables}`)
       .then(res => {
         dispatch(fetchSuccess(res.data));
       })
