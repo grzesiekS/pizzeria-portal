@@ -8,7 +8,7 @@ import Container from '@material-ui/core/Container';
 class MainLayout extends React.Component {
   render() {
     return (
-      <div className="MainLayout">
+      <div className='MainLayout'>
         <AppBar>
           <Container maxWidth='lg'>
             <Toolbar disableGutters>
