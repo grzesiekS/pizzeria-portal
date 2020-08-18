@@ -37,6 +37,21 @@ export const fetchFromAPI = () => {
   };
 };
 
+export const postTableStatusToAPI = () => {
+  return (dispatch, setState) => {
+    dispatch(fetchStarted());
+
+    Axios
+      .post(`${api.url}/${api.tables}`)
+      .then(res => {
+        dispatch(changeTableStatus(res));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
