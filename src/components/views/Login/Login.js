@@ -10,7 +10,7 @@ const Login = () => (
     <div className={styles.innerSection}>
       <h2 className={styles.title}>Login</h2>
       <form>
-        <TextField id="login" label="Login" className />
+        <TextField id="login" label="Login" />
         <TextField
           id="password"
           label="Password"
