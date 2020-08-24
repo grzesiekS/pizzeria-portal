@@ -18,56 +18,6 @@ import Button from '@material-ui/core/Button';
 import styles from './Order.module.scss';
 import { Radio } from '@material-ui/core';
 
-const dbDataOrdersDemo = [
-  {
-    address: '',
-    phone: '',
-    tableNo: '1',
-    totalPrice: 40,
-    totalNumber: 1,
-    subtotalPrice: 20,
-    deliveryFee: 20,
-    products: [
-      {
-        id: 'pizza',
-        amount: 1,
-        price: 20,
-        priceSingle: 20,
-        params: {
-          sauce: {
-            tomato: 'tomato',
-          },
-          toppings: {
-            olives: 'olives',
-            redPeppers: 'redPeppers',
-            greenPeppers: 'greenPeppers',
-            mushrooms: 'mushrooms',
-            basil: 'basil',
-          },
-          crust: {
-            standard: 'standard',
-          },
-        },
-      },
-      {
-        id: 'cake',
-        amount: 9,
-        price: 27,
-        priceSingle: 9,
-        params: {},
-      },
-      {
-        id: 'cake',
-        amount: 5,
-        price: 45,
-        priceSingle: 9,
-        params: {},
-      },
-    ],
-    id: 123,
-  },
-];
-
 const findProduct = (productId, productList) => productList.filter(product => product.id === productId);
 
 const renderActions = param => {
@@ -132,15 +82,15 @@ class Order extends React.Component {
   }
 
   render() {
-    const { loadingProducts: {active, error}, products, orders} = this.props;
+    const { loadingProducts: {active, error}, products, orders, loadingOrders} = this.props;
 
-    if(active || !products.length) {
+    if(active || !products.length || loadingOrders.active) {
       return (
         <Paper className={styles.component}>
           <p>Loading...</p>
         </Paper>
       );
-    } else if (error) {
+    } else if (error || loadingOrders.error) {
       return (
         <Paper className={styles.component}>
           <p>Error! Details:</p>
@@ -187,7 +137,7 @@ class Order extends React.Component {
               ))}
             </div>
             <div className={styles.container}>
-              {dbDataOrdersDemo.map(order =>
+              {orders.map(order =>
                 <Grid key={order.id} item component={Paper} className={styles.innerSection}>
                   <h2 className={styles.title}>{`Order ${this.props.match.params.id}`}</h2>
                   <TextField
@@ -245,6 +195,10 @@ Order.propTypes = {
   fetchProducts: PropTypes.func,
   fetchFilteredOrder: PropTypes.func,
   loadingProducts: PropTypes.shape({
+    active: PropTypes.bool,
+    error: PropTypes.oneOfType([PropTypes.bool,PropTypes.string]),
+  }),
+  loadingOrders: PropTypes.shape({
     active: PropTypes.bool,
     error: PropTypes.oneOfType([PropTypes.bool,PropTypes.string]),
   }),

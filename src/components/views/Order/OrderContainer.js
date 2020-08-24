@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import Order from './Order';
 import {getAllProducts, fetchProductsFromAPI, getProductsLoadingState} from '../../../redux/productRedux';
-import {getAllOrders, fetchFilteredOrderFromAPI} from '../../../redux/orderRedux';
+import {getAllOrders, fetchFilteredOrderFromAPI, getOrderLoadingState} from '../../../redux/orderRedux';
 
 const mapStateToProps = (state) => ({
   products: getAllProducts(state),
   loadingProducts: getProductsLoadingState(state),
   orders: getAllOrders(state),
+  loadingOrders: getOrderLoadingState(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

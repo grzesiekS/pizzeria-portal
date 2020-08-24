@@ -3,6 +3,7 @@ import { api } from '../settings';
 
 /* selectors */
 export const getAllOrders = ({order}) => order.data;
+export const getOrderLoadingState = ({order}) => order.loading;
 
 /* action name creator */
 const reducerName = 'order';
