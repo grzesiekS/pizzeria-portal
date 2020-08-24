@@ -53,6 +53,7 @@ export default function reducer(statePart = [], action = {}) {
           active: false,
           error: false,
         },
+        data: action.payload,
       };
     }
     case FETCH_ERROR: {
