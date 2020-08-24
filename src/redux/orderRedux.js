@@ -12,11 +12,13 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const FETCH_FILTERED_ORDER = createActionName('FETCH_FILTERED_ORDER');
 
 /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS});
 export const fetchError = payload => ({ payload, type: FETCH_ERROR});
+export const fetchFilteredOrder = payload => ({ payload, type: FETCH_FILTERED_ORDER });
 
 /* thunk creators */
 export const fetchOrderFromAPI = () => {
@@ -29,6 +31,21 @@ export const fetchOrderFromAPI = () => {
         dispatch(fetchSuccess(res.data));
       })
       .catch(err =>{
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
+export const fetchFilteredOrderFromAPI = orderId => {
+  return(dispatch, getState) => {
+    dispatch(fetchStarted());
+
+    Axios
+      .get(`${api.url}/${api.order}`)
+      .then(res => {
+        dispatch(fetchFilteredOrder(res.data.filter(dataPart => dataPart.id === orderId)));
+      })
+      .catch(err => {
         dispatch(fetchError(err.message || true));
       });
   };
@@ -63,6 +80,16 @@ export default function reducer(statePart = [], action = []) {
           active: false,
           error: action.payload,
         },
+      };
+    }
+    case FETCH_FILTERED_ORDER: {
+      return {
+        ...statePart,
+        loading: {
+          active: false,
+          error: false,
+        },
+        data: action.payload,
       };
     }
     default:
