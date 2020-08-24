@@ -1,7 +1,7 @@
 export const api = {
   url: '//' + window.location.hostname + (window.location.hostname==='localhost' ? ':3131' : '') + '/api',
   tables: 'tables',
-  products: 'products',
+  products: 'product',
   order: 'order',
   booking: 'booking',
   event: 'event',

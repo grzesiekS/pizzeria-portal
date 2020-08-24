@@ -12,7 +12,7 @@ import Waiter from './components/views/Waiter/WaiterContainer';
 import Kitchen from './components/views/Kitchen/Kitchen';
 
 import Booking from './components/views/Booking/Booking';
-import Order from './components/views/Order/Order';
+import Order from './components/views/Order/OrderContainer';
 import Event from './components/views/Event/Event';
 
 import MainLayout from './components/layout/MainLayout/MainLayout';

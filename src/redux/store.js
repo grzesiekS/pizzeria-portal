@@ -14,6 +14,13 @@ const initialState = {
       error: false,
     },
   },
+  product: {
+    data: {},
+    loading: {
+      active: false,
+      error: false,
+    },
+  },
 };
 
 // define reducers
