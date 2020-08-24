@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { api } from '../settings';
 
 /* selectors */
-export const getAll = ({product}) => product;
+export const getAllProducts = ({product}) => product.data;
 
 /* action name creator */
 const reducerName = 'product';
@@ -19,12 +19,12 @@ export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 
 /* thunk creators */
-export const fetchFromAPI = () => {
+export const fetchProductsFromAPI = () => {
   return (dispatch, getState) => {
     dispatch(fetchStarted());
 
     Axios
-      .get(`${api.url}/${api.tables}`)
+      .get(`${api.url}/${api.products}`)
       .then(res => {
         dispatch(fetchSuccess(res.data));
       })
