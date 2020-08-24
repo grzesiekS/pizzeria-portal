@@ -9,7 +9,7 @@ import Dashboard from './components/views/Dashboard/Dashboard';
 import Login from './components/views/Login/Login';
 import TablesStatus from './components/views/TablesStatus/TablesStatus';
 import Waiter from './components/views/Waiter/WaiterContainer';
-import Kitchen from './components/views/Kitchen/Kitchen';
+import Kitchen from './components/views/Kitchen/KitchenContainer';
 
 import Booking from './components/views/Booking/Booking';
 import Order from './components/views/Order/OrderContainer';
