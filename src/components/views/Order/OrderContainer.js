@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import Order from './Order';
-import {getAllProducts, fetchProductsFromAPI} from '../../../redux/productRedux';
+import {getAllProducts, fetchProductsFromAPI, getProductsLoadingState} from '../../../redux/productRedux';
 
 const mapStateToProps = (state) => ({
   products: getAllProducts(state),
+  loadingProducts: getProductsLoadingState(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
