@@ -4,8 +4,8 @@ import {getAllOrders, fetchOrderFromAPI} from '../../../redux/orderRedux';
 import { getAllProducts, fetchProductsFromAPI } from '../../../redux/productRedux';
 
 const mapStateToProps = (state) => ({
-  orders: getAllOrders(),
-  products: getAllProducts(),
+  orders: getAllOrders(state),
+  products: getAllProducts(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
