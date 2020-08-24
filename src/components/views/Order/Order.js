@@ -124,12 +124,13 @@ const renderActions = param => {
 class Order extends React.Component {
 
   componentDidMount() {
-    const { fetchProducts } = this.props;
+    const { fetchProducts, fetchFilteredOrder } = this.props;
     fetchProducts();
+    fetchFilteredOrder(parseInt(this.props.match.params.id));
   }
 
   render() {
-    const { loadingProducts: {active, error}, products} = this.props;
+    const { loadingProducts: {active, error}, products, orders} = this.props;
 
     if(active || !products.length) {
       return (
@@ -238,11 +239,13 @@ Order.propTypes = {
     }),
   }),
   fetchProducts: PropTypes.func,
+  fetchFilteredOrder: PropTypes.func,
   loadingProducts: PropTypes.shape({
     active: PropTypes.bool,
     error: PropTypes.oneOfType([PropTypes.bool,PropTypes.string]),
   }),
   products: PropTypes.any,
+  orders: PropTypes.any,
 };
 
 export default Order;
