@@ -3,6 +3,7 @@ import { api } from '../settings';
 
 /* selectors */
 export const getAllProducts = ({product}) => product.data;
+export const getProductsLoadingState = ({product}) => product.loading;
 
 /* action name creator */
 const reducerName = 'product';
